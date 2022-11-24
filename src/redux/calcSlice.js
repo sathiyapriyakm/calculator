@@ -16,16 +16,16 @@ export const calcSlice = createSlice({
     setResult: (state) => {
       let temp= state.expression.join("");
       try{
-      let result=eval(temp).toFixed(5);
+      let result=eval(temp);
       state.expression = [result];
       temp=temp+"="+result;
-      if(state.memory.size>=10){
-          let temp2=state.memory.slice(1);
+      if(state.memory.length>=10){
+          let temp2=[...state.memory].slice(1);
           temp2.push(temp)
-          state.memory=[...state.memory,temp2]
+          state.memory=[...temp2];
       }
-      else
-        state.memory=[...state.memory,temp]
+      else state.memory=[...state.memory,temp]
+
       }catch(error){
         state.expression = ["error"];
       }
