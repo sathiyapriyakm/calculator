@@ -58,7 +58,7 @@
   display: flex;
   justify-content: center;
   align-items: center; 
-   font-weight: lighter;
+   /* font-weight: lighter; */
   font-size: 1.4em;
   background-color:#0ba8e6;
   color: #000000;
@@ -73,7 +73,7 @@
   display: flex;
   justify-content: center;
   align-items: center; 
-   font-weight: lighter;
+   /* font-weight: lighter; */
   font-size: 1.4em;
   color: #000000;
   flex: 1;
