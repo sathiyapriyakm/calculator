@@ -8,22 +8,27 @@ export const calcSlice = createSlice({
   },
   reducers: {
     setExpression: (state, action) => {
+      // To add the user input to expression for calculation
       state.expression = [...state.expression,action.payload];
     },
     setClear: (state) => {
+       // To clear the user input
       state.expression = [];
     },
     setResult: (state) => {
+      // To calculate the result of formed expression on pressing "="
       let temp= state.expression.join("");
       try{
       let result=eval(temp);
       state.expression = [result];
       temp=temp+"="+result;
+      // To store only the latest 10 data of user calculation
       if(state.memory.length>=10){
           let temp2=[...state.memory].slice(1);
           temp2.push(temp)
           state.memory=[...temp2];
       }
+      // To store only data of user calculation
       else state.memory=[...state.memory,temp]
 
       }catch(error){
@@ -31,12 +36,17 @@ export const calcSlice = createSlice({
       }
     },
     setDelete: (state) => {
+      // To delete/clear the last 1 digit entered
       let temp=state.expression;
       if(temp.length>0) temp.pop();
       state.expression =temp;
     },
     getFromMemory: (state) => {
-      state.expression = state.memory.pop();
+       // To retrive the data of previous calculations from memory
+       if(state.memory.length>0)
+        state.expression = state.memory.pop();
+        else
+        state.expression = [];
     },
   },
 });
